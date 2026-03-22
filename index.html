@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Math — Elite Mathematics Tutoring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --rust: #8b3a2a;
+    --slate: #2a2d35;
+    --muted: #7a7567;
+    --line: rgba(201,168,76,0.25);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 6rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-size: clamp(3.5rem, 5vw, 6rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 42ch;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 1s 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    color: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .btn-secondary:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-math-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--slate);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .math-symbols {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 2rem;
+    gap: 1rem;
+    opacity: 0.07;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    font-style: italic;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .hero-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 3rem;
+    max-width: 340px;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    animation: fadeIn 1.2s 1s forwards;
+  }
+
+  .hero-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-card-stat {
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-card-desc {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.6);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .hero-card-divider {
+    border: none;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    margin: 1.5rem 0;
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--ink);
+    padding: 0.9rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    animation: ticker 30s linear infinite;
+    gap: 0;
+  }
+
+  .ticker-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0 3rem;
+    opacity: 0.8;
+  }
+
+  .ticker-dot {
+    color: var(--rust);
+    padding: 0;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 8rem 4rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    max-width: 22ch;
+  }
+
+  .section-title em { font-style: italic; color: var(--rust); }
+
+  /* ── EXPERTISE ── */
+  .expertise {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .expertise-intro p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+
+  .expertise-card {
+    padding: 2rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .expertise-card:hover { background: rgba(201,168,76,0.06); }
+  .expertise-card:nth-child(3n) { border-right: none; }
+  .expertise-card:nth-child(n+7) { border-bottom: none; }
+
+  .expertise-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+
+  .expertise-card h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .expertise-card p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    line-height: 1.6;
+  }
+
+  /* ── SUBJECTS ── */
+  .subjects {
+    background: var(--slate);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .subjects::before {
+    content: 'MATHEMATICS';
+    position: absolute;
+    font-size: 18vw;
+    font-weight: 300;
+    color: rgba(255,255,255,0.02);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.03em;
+  }
+
+  .subjects .section-title { color: var(--cream); max-width: 30ch; }
+
+  .subjects-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .subject-column h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .subject-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .subject-list li {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(245,240,232,0.75);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.07);
+    transition: color 0.2s, padding-left 0.2s;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .subject-list li::before {
+    content: '→';
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .subject-list li:hover {
+    color: var(--gold-light);
+    padding-left: 0.25rem;
+  }
+
+  .subject-list li:hover::before { opacity: 1; }
+
+  /* ── STUDENTS ── */
+  .students {
+    background: var(--cream);
+  }
+
+  .students-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .students-header p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+
+  .students-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .students-table thead tr {
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .students-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 1rem 1rem 1rem 0;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .students-table td {
+    padding: 0.9rem 1rem 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    vertical-align: middle;
+  }
+
+  .students-table tr:hover td { background: rgba(201,168,76,0.04); }
+
+  .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    margin: 0.15rem;
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial-section {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 8rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonial-section::before {
+    content: '❝';
+    position: absolute;
+    font-size: 30rem;
+    color: rgba(201,168,76,0.04);
+    top: -5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Georgia, serif;
+    pointer-events: none;
+  }
+
+  .testimonial-quote {
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 65ch;
+    margin: 0 auto 2.5rem;
+    color: rgba(245,240,232,0.9);
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-info p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .contact-detail-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 5rem;
+  }
+
+  .contact-detail-value {
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-field label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    padding: 0.75rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    appearance: none;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus,
+  .form-field select:focus {
+    border-color: var(--gold);
+  }
+
+  .form-field textarea { resize: vertical; min-height: 100px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.5);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  footer .nav-logo { font-size: 0.7rem; }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── REVEAL ON SCROLL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 2rem 4rem; }
+    section { padding: 5rem 2rem; }
+    .expertise { grid-template-columns: 1fr; gap: 3rem; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .subjects-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .students-header { grid-template-columns: 1fr; gap: 2rem; }
+    .contact { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Dr. [Your Name] · Ph.D. Mathematics</div>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#subjects">Subjects</a></li>
+    <li><a href="#students">Students</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Ph.D. · Graph Theory & Combinatorics · 5+ Years</p>
+    <h1 class="hero-title">
+      Mathematics,<br>
+      taught with<br>
+      <em>precision.</em>
+    </h1>
+    <p class="hero-subtitle">
+      Expert tutoring for competitive mathematics, olympiads, university coursework, and research — from AMC to IMO, IIT-JEE to graduate seminars.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Book a Session</a>
+      <a href="#students" class="btn-secondary">See Student Results</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-math-bg">
+      <div class="math-symbols" aria-hidden="true">
+        ∑ ∫ ∂ ∇ ∞ π φ Δ Γ Λ Ω α β γ δ ε ζ η θ ι κ λ μ ν ξ ρ σ τ υ χ ψ ω ℝ ℂ ℕ ℤ ℚ ∀ ∃ ∈ ∉ ⊂ ⊃ ∩ ∪ ⊕ ⊗ ≡ ≈ ≤ ≥ ≠ ⊥ ∠ ∴ ∵ ∮ ∬ ∭ ∯ ≃ ≅ ⟹ ⟺ ∑ ∫ ∂ ∇ ∞ π φ Δ Γ Λ Ω α β γ δ ε ζ η θ ι κ λ μ ν ξ ρ σ τ υ χ ψ ω ℝ ℂ ℕ ℤ ℚ ∀ ∃ ∈ ∉ ⊂ ⊃ ∩ ∪ ⊕ ⊗ ≡ ≈ ≤ ≥ ≠ ⊥ ∠ ∴ ∵ ∮ ∬ ∭
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">At a Glance</div>
+      <div class="hero-card-stat">50+</div>
+      <div class="hero-card-desc">Students mentored across 15+ countries, from school competitions to graduate research.</div>
+      <hr class="hero-card-divider">
+      <div class="hero-card-stat" style="font-size:2.5rem;">20+</div>
+      <div class="hero-card-desc">Competitions & curricula covered — AMC, AIME, IMO, IIT-JEE, IB, AP, UKMT, and more.</div>
+      <hr class="hero-card-divider">
+      <div class="hero-card-stat" style="font-size:2.5rem;">Ph.D.</div>
+      <div class="hero-card-desc">Graph Theory & Combinatorics. Research-grade knowledge brought to every session.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">AMC 8 / 10 / 12</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">AIME</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">IMO</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">IIT-JEE Mains & Advanced</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">USAMO / USAJMO</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">IB Mathematics</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">AP Calculus BC</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">UKMT Senior / Junior</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">BMO</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">Kangaroo Math</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">SAT Math</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">Graph Theory</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">Combinatorics</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">Mathcounts</span><span class="ticker-dot"> ✦ </span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">AMC 8 / 10 / 12</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">AIME</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">IMO</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">IIT-JEE Mains & Advanced</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">USAMO / USAJMO</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">IB Mathematics</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">AP Calculus BC</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">UKMT Senior / Junior</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">BMO</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">Kangaroo Math</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">SAT Math</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">Graph Theory</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">Combinatorics</span><span class="ticker-dot"> ✦ </span>
+    <span class="ticker-item">Mathcounts</span><span class="ticker-dot"> ✦ </span>
+  </div>
+</div>
+
+<!-- EXPERTISE -->
+<section class="expertise reveal" id="expertise">
+  <div class="expertise-intro">
+    <div class="section-label">Who I Teach</div>
+    <h2 class="section-title">From first proofs to <em>doctoral research</em></h2>
+    <p>Whether you're a school student eyeing your first olympiad medal, an undergrad navigating abstract algebra, or a graduate student deepening your research — I offer structured, personalised guidance that meets you exactly where you are.</p>
+    <p>I hold a Ph.D. in Mathematics specialising in Graph Theory and Combinatorics, with over five years of academic teaching and mentorship experience.</p>
+    <a href="#contact" class="btn-primary" style="margin-top:1rem; display:inline-block;">Start Today</a>
+  </div>
+  <div class="expertise-grid reveal">
+    <div class="expertise-card">
+      <div class="expertise-card-num">01</div>
+      <h3>Competition Prep</h3>
+      <p>AMC, AIME, IMO, USAMO, IIT-JEE, UKMT, Olympiads</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-card-num">02</div>
+      <h3>School Curricula</h3>
+      <p>IB, AP Calculus/Stats, SAT, A-Level, Pre-Calculus</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-card-num">03</div>
+      <h3>University Courses</h3>
+      <p>Algebra, Analysis, Topology, Linear Algebra, ODE/PDE</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-card-num">04</div>
+      <h3>Graduate Seminars</h3>
+      <p>Graph Theory, Coding Theory, Measure Theory, Group Theory</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-card-num">05</div>
+      <h3>Homework Help</h3>
+      <p>Assignments across all mathematical disciplines</p>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-card-num">06</div>
+      <h3>Projects & Research</h3>
+      <p>High school, undergraduate, and graduate-level projects</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section class="subjects" id="subjects">
+  <div class="section-label">Subjects</div>
+  <h2 class="section-title reveal">Every branch of mathematics, <em>deeply understood</em></h2>
+  <div class="subjects-layout reveal">
+    <div class="subject-column">
+      <h4>Academic Subjects</h4>
+      <ul class="subject-list">
+        <li>Algebra</li>
+        <li>Calculus &amp; Precalculus</li>
+        <li>Combinatorics</li>
+        <li>Coding Theory</li>
+        <li>Data Structures</li>
+        <li>Differential Equations (ODE &amp; PDE)</li>
+        <li>Discrete Mathematics</li>
+        <li>Graph Theory</li>
+        <li>Group Theory</li>
+        <li>Linear Algebra</li>
+        <li>Machine Learning</li>
+        <li>Measure Theory</li>
+        <li>Number Theory</li>
+        <li>Probability Theory</li>
+        <li>Python Programming</li>
+        <li>Statistics</li>
+        <li>Topology</li>
+      </ul>
+    </div>
+    <div class="subject-column">
+      <h4>Competitive Examinations</h4>
+      <ul class="subject-list">
+        <li>AMC 8, AMC 10, AMC 12</li>
+        <li>AIME</li>
+        <li>AP Calculus AB &amp; BC, AP Statistics, AP Precalculus</li>
+        <li>Advanced &amp; Further Math (UK)</li>
+        <li>British Mathematical Olympiad (BMO)</li>
+        <li>Cambridge A &amp; AS Level Mathematics</li>
+        <li>IB / IBDP Mathematics</li>
+        <li>IOQM, PRMO, RMO, INMO</li>
+        <li>IIT-JEE Mains &amp; Advanced</li>
+        <li>IIT JAM (M.Sc. Entrance)</li>
+        <li>International Mathematical Olympiad (IMO)</li>
+        <li>Junior Mathematical Challenge (UKMT)</li>
+        <li>Kangaroo Math</li>
+        <li>Mathcounts</li>
+        <li>SAT Mathematics</li>
+        <li>Senior Mathematical Challenge (UKMT)</li>
+        <li>USAJMO &amp; USAMO</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENTS -->
+<section class="students reveal" id="students">
+  <div class="students-header">
+    <div>
+      <div class="section-label">Student Results</div>
+      <h2 class="section-title">Students who <em>excelled</em></h2>
+    </div>
+    <div>
+      <p>Past students have gone on to secure admissions at prestigious universities and achieved top results in competitive examinations around the world.</p>
+      <div class="stats-row" style="margin-top:2rem;">
+        <div class="stat">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Students</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Years</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="students-table">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Location</th>
+        <th>Focus Areas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Rishi Rai</td><td>USA</td><td><span class="tag">AMC 10</span><span class="tag">AMC 12</span><span class="tag">AIME</span></td></tr>
+      <tr><td>Drishti Motwani</td><td>USA</td><td><span class="tag">AMC 10–12</span><span class="tag">AIME</span><span class="tag">BMT</span></td></tr>
+      <tr><td>Tristan Hoon</td><td>USA</td><td><span class="tag">AMC 10–12</span><span class="tag">Alpha-Mu-Theta</span></td></tr>
+      <tr><td>Nishka Chowdhury</td><td>USA</td><td><span class="tag">Kangaroo</span><span class="tag">Mathcounts</span><span class="tag">AMC 8</span></td></tr>
+      <tr><td>Kaushik Kashyap</td><td>India</td><td><span class="tag">AMC 12</span><span class="tag">AIME</span><span class="tag">COMS</span></td></tr>
+      <tr><td>Parth Malhorta</td><td>UK</td><td><span class="tag">UKMT</span><span class="tag">Hamiltonian Olympiad</span><span class="tag">AMC 10</span></td></tr>
+      <tr><td>Sven Falk</td><td>Singapore</td><td><span class="tag">IB Math</span><span class="tag">AMC 10</span></td></tr>
+      <tr><td>Abhinav Malladi</td><td>UK</td><td><span class="tag">AMC 8</span><span class="tag">AOPS</span><span class="tag">BMO</span></td></tr>
+      <tr><td>Geoff Yuen</td><td>Canada</td><td><span class="tag">Graph Theory</span><span class="tag">Group Theory</span><span class="tag">Number Theory</span></td></tr>
+      <tr><td>Ishaan Sharma</td><td>UK</td><td><span class="tag">Machine Learning</span><span class="tag">Combinatorics</span><span class="tag">Graph Theory</span></td></tr>
+      <tr><td>Heba Abduljabar</td><td>UK</td><td><span class="tag">Number Theory</span><span class="tag">Cryptography</span></td></tr>
+      <tr><td>Vedant Wani</td><td>Netherlands</td><td><span class="tag">Linear Optimisation</span><span class="tag">Non-linear Optimisation</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-section">
+  <blockquote class="testimonial-quote">
+    "A deep passion for mathematics, an extraordinary gift for making complex ideas accessible, and an unwavering commitment to every student's success."
+  </blockquote>
+  <div class="testimonial-author">Student testimonial · Graduate Level</div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact reveal" id="contact">
+  <div class="contact-info">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Ready to begin?</h2>
+    <p>I offer one-on-one online sessions tailored to your goals — whether that's cracking a competition, mastering a course, or diving deep into research-level mathematics. Fill in the form and I'll be in touch within 24 hours.</p>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Mode</span>
+      <span class="contact-detail-value">Online, one-on-one (preferred) · Offline groups available</span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Timezone</span>
+      <span class="contact-detail-value">Flexible — students across USA, UK, India, Singapore & beyond</span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Software</span>
+      <span class="contact-detail-value">MATLAB · Mathematica · Python · SageMath · LaTeX</span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Response</span>
+      <span class="contact-detail-value">Within 24 hours</span>
+    </div>
+  </div>
+  <form class="contact-form" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="Full name" required>
+      </div>
+      <div class="form-field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+      </div>
+    </div>
+    <div class="form-field">
+      <label for="level">Level</label>
+      <select id="level">
+        <option value="">Select your level</option>
+        <option>School Student</option>
+        <option>Undergraduate</option>
+        <option>Graduate / Ph.D.</option>
+        <option>Professional</option>
+        <option>Parent enquiring for child</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="subject">Subject / Exam</label>
+      <input type="text" id="subject" placeholder="e.g. AMC 12, Graph Theory, IIT-JEE…">
+    </div>
+    <div class="form-field">
+      <label for="message">Message</label>
+      <textarea id="message" placeholder="Tell me about your goals, timeline, and any specific topics you'd like help with…"></textarea>
+    </div>
+    <button type="submit" class="btn-primary" style="align-self:flex-start;">Send Enquiry →</button>
+    <div id="form-success" style="display:none; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; color:var(--gold); margin-top:0.5rem;">
+      ✓ Message received — I'll be in touch within 24 hours.
+    </div>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="nav-logo" style="color:rgba(245,240,232,0.5);">Dr. [Your Name] · Ph.D. Mathematics</div>
+  <div class="footer-copy">© 2025 · All rights reserved</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>
