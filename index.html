@@ -1050,64 +1050,87 @@
     </div>
   </div>
 
-  <table class="students-table">
-    <thead>
-      <tr>
-        <th>Student</th>
-        <th>Location</th>
-        <th>Focus Areas</th>
-      </tr>
-    </thead>
-<tbody>
-  <tr><td colspan="3" style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);padding:1.5rem 0 0.5rem;border-bottom:1px solid var(--line);">School Students</td></tr>
-  <tr><td>Tasha Ramayanam</td><td>India</td><td><span class="tag">AOPS Curriculum</span></td></tr>
-  <tr><td>Yuvan Ramayanam</td><td>India</td><td><span class="tag">AOPS Curriculum</span></td></tr>
-  <tr><td>Aaryaa &amp; Aanyaa Khandelwal</td><td>India</td><td><span class="tag">AMC 8</span></td></tr>
-  <tr><td>Rishi Rai</td><td>USA</td><td><span class="tag">AMC 10</span><span class="tag">AMC 12</span><span class="tag">AIME</span></td></tr>
-  <tr><td>Teja Dhulipala</td><td>USA</td><td><span class="tag">AMC 10</span><span class="tag">Alpha-Mu-Theta</span><span class="tag">Kangaroo Maths</span></td></tr>
-  <tr><td>Sven Falk</td><td>Singapore</td><td><span class="tag">IB Math</span><span class="tag">AMC 10</span></td></tr>
-  <tr><td>Abhinav Malladi</td><td>UK</td><td><span class="tag">AMC 8</span><span class="tag">AOPS</span><span class="tag">BMO</span></td></tr>
-  <tr><td>Om Sareen</td><td>USA</td><td><span class="tag">AMC 10</span></td></tr>
-  <tr><td>Dawn Lee</td><td>Singapore</td><td><span class="tag">IB Math</span></td></tr>
-  <tr><td>Kaushik Kashyap</td><td>India</td><td><span class="tag">AMC 12</span><span class="tag">AIME</span><span class="tag">COMS</span></td></tr>
-  <tr><td>Hari Kannan Annamalai</td><td>India</td><td><span class="tag">AMC 10</span></td></tr>
-  <tr><td>Avi Mandhana</td><td>USA</td><td><span class="tag">AMC 10</span><span class="tag">AP Calculus</span></td></tr>
-  <tr><td>Aayush Mandhana</td><td>USA</td><td><span class="tag">SAT Mathematics</span></td></tr>
-  <tr><td>Tristan Hoon</td><td>USA</td><td><span class="tag">AMC 10–12</span><span class="tag">Alpha-Mu-Theta</span></td></tr>
-  <tr><td>Drishti Motwani</td><td>USA</td><td><span class="tag">AMC 10–12</span><span class="tag">AIME</span><span class="tag">BMT</span></td></tr>
-  <tr><td>Ean Anikathil</td><td>USA</td><td><span class="tag">AMC 8</span></td></tr>
-  <tr><td>Ethan Anikathil</td><td>USA</td><td><span class="tag">AP Calculus BC</span><span class="tag">AP Statistics</span></td></tr>
-  <tr><td>Arjun &amp; Rajbir</td><td>USA</td><td><span class="tag">AMC 8</span></td></tr>
-  <tr><td>Nishka Chowdhury</td><td>USA</td><td><span class="tag">Kangaroo Math</span><span class="tag">Mathcounts</span><span class="tag">AMC 8</span></td></tr>
-  <tr><td>Parth Malhorta</td><td>UK</td><td><span class="tag">UKMT</span><span class="tag">Hamiltonian Olympiad</span><span class="tag">AMC 10</span></td></tr>
-  <tr><td>Nihal Reddy</td><td>India</td><td><span class="tag">AOPS</span></td></tr>
-  <tr><td>Mili Pawar</td><td>USA</td><td><span class="tag">Pre-Calculus</span></td></tr>
-  <tr><td>Jahnavi Revuru</td><td>USA</td><td><span class="tag">AP Statistics</span></td></tr>
+  <!-- Toggle buttons -->
+<div style="display:flex; gap:1rem; margin-bottom:2rem;">
+  <button onclick="toggleTable('school')" id="btn-school"
+    style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; padding:0.75rem 1.75rem; border:1px solid var(--ink); background:var(--ink); color:var(--cream); cursor:pointer; transition:all 0.3s;">
+    School Students ▾
+  </button>
+  <button onclick="toggleTable('grad')" id="btn-grad"
+    style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; padding:0.75rem 1.75rem; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.3s;">
+    Graduate Students ▾
+  </button>
+</div>
 
-  <tr><td colspan="3" style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);padding:1.5rem 0 0.5rem;border-bottom:1px solid var(--line);">Graduate Students</td></tr>
-  <tr><td>Heba Abduljabar</td><td>UK</td><td><span class="tag">Number Theory</span><span class="tag">Cryptography</span></td></tr>
-  <tr><td>Rahul Varghese</td><td>India</td><td><span class="tag">Graph Theory</span><span class="tag">B.Tech Sem 4</span></td></tr>
-  <tr><td>S. D.</td><td>USA</td><td><span class="tag">SageMath</span></td></tr>
-  <tr><td>Sanaasha Ali</td><td>Canada</td><td><span class="tag">Combinatorics</span></td></tr>
-  <tr><td>Anna</td><td>USA</td><td><span class="tag">Combinatorics</span></td></tr>
-  <tr><td>Yilin Mou</td><td>USA</td><td><span class="tag">Number Theory</span></td></tr>
-  <tr><td>Geoff Yuen</td><td>Canada</td><td><span class="tag">Graph Theory</span><span class="tag">Group Theory</span><span class="tag">Number Theory</span></td></tr>
-  <tr><td>Sixiang Huang</td><td>USA</td><td><span class="tag">Graph Theory</span></td></tr>
-  <tr><td>Xiao Chen</td><td>USA</td><td><span class="tag">Number Theory</span></td></tr>
-  <tr><td>Ravisher Singh</td><td>USA</td><td><span class="tag">Combinatorics</span></td></tr>
-  <tr><td>Iteshaam Mahmood</td><td>USA</td><td><span class="tag">Probability Theory</span></td></tr>
-  <tr><td>Anas Alqarni</td><td>UAE</td><td><span class="tag">Discrete Maths</span></td></tr>
-  <tr><td>Kanan Jabar Karimli</td><td>Azerbaijan</td><td><span class="tag">Linear Algebra</span></td></tr>
-  <tr><td>Mona Albaqawi</td><td>Saudi Arabia</td><td><span class="tag">Graph Theory</span></td></tr>
-  <tr><td>Darren</td><td>India</td><td><span class="tag">Combinatorics</span><span class="tag">Probability Theory</span><span class="tag">B.Tech Sem 4</span></td></tr>
-  <tr><td>Lucius Y. Men</td><td>Canada</td><td><span class="tag">Combinatorial Analysis</span></td></tr>
-  <tr><td>Praveen Kumar</td><td>Singapore</td><td><span class="tag">Combinatorics</span></td></tr>
-  <tr><td>Ishaan Sharma</td><td>UK</td><td><span class="tag">Machine Learning</span><span class="tag">Combinatorics</span><span class="tag">Graph Theory</span></td></tr>
-  <tr><td>Vedant Wani</td><td>Netherlands</td><td><span class="tag">Linear Optimisation</span><span class="tag">Non-linear Optimisation</span></td></tr>
-  <tr><td>Sundaresh HR</td><td>India</td><td><span class="tag">Group Theory</span></td></tr>
-  <tr><td>Shawn Keogh</td><td>Ireland</td><td><span class="tag">Queuing Theory</span><span class="tag">Python</span><span class="tag">Metric Spaces</span></td></tr>
-</tbody>
-  </table>
+<!-- School Students Table -->
+<div id="table-school" style="overflow:hidden; transition:max-height 0.5s ease; max-height:2000px;">
+<table class="students-table" style="margin-bottom:3rem;">
+  <thead>
+    <tr>
+      <th>Student</th><th>Location</th><th>Focus Areas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Tasha Ramayanam</td><td>India</td><td><span class="tag">AOPS Curriculum</span></td></tr>
+    <tr><td>Yuvan Ramayanam</td><td>India</td><td><span class="tag">AOPS Curriculum</span></td></tr>
+    <tr><td>Aaryaa &amp; Aanyaa Khandelwal</td><td>India</td><td><span class="tag">AMC 8</span></td></tr>
+    <tr><td>Rishi Rai</td><td>USA</td><td><span class="tag">AMC 10</span><span class="tag">AMC 12</span><span class="tag">AIME</span></td></tr>
+    <tr><td>Teja Dhulipala</td><td>USA</td><td><span class="tag">AMC 10</span><span class="tag">Alpha-Mu-Theta</span><span class="tag">Kangaroo Maths</span></td></tr>
+    <tr><td>Sven Falk</td><td>Singapore</td><td><span class="tag">IB Math</span><span class="tag">AMC 10</span></td></tr>
+    <tr><td>Abhinav Malladi</td><td>UK</td><td><span class="tag">AMC 8</span><span class="tag">AOPS</span><span class="tag">BMO</span></td></tr>
+    <tr><td>Om Sareen</td><td>USA</td><td><span class="tag">AMC 10</span></td></tr>
+    <tr><td>Dawn Lee</td><td>Singapore</td><td><span class="tag">IB Math</span></td></tr>
+    <tr><td>Kaushik Kashyap</td><td>India</td><td><span class="tag">AMC 12</span><span class="tag">AIME</span><span class="tag">COMS</span></td></tr>
+    <tr><td>Hari Kannan Annamalai</td><td>India</td><td><span class="tag">AMC 10</span></td></tr>
+    <tr><td>Avi Mandhana</td><td>USA</td><td><span class="tag">AMC 10</span><span class="tag">AP Calculus</span></td></tr>
+    <tr><td>Aayush Mandhana</td><td>USA</td><td><span class="tag">SAT Mathematics</span></td></tr>
+    <tr><td>Tristan Hoon</td><td>USA</td><td><span class="tag">AMC 10–12</span><span class="tag">Alpha-Mu-Theta</span></td></tr>
+    <tr><td>Drishti Motwani</td><td>USA</td><td><span class="tag">AMC 10–12</span><span class="tag">AIME</span><span class="tag">BMT</span></td></tr>
+    <tr><td>Ean Anikathil</td><td>USA</td><td><span class="tag">AMC 8</span></td></tr>
+    <tr><td>Ethan Anikathil</td><td>USA</td><td><span class="tag">AP Calculus BC</span><span class="tag">AP Statistics</span></td></tr>
+    <tr><td>Arjun &amp; Rajbir</td><td>USA</td><td><span class="tag">AMC 8</span></td></tr>
+    <tr><td>Nishka Chowdhury</td><td>USA</td><td><span class="tag">Kangaroo Math</span><span class="tag">Mathcounts</span><span class="tag">AMC 8</span></td></tr>
+    <tr><td>Parth Malhorta</td><td>UK</td><td><span class="tag">UKMT</span><span class="tag">Hamiltonian Olympiad</span><span class="tag">AMC 10</span></td></tr>
+    <tr><td>Nihal Reddy</td><td>India</td><td><span class="tag">AOPS</span></td></tr>
+    <tr><td>Mili Pawar</td><td>USA</td><td><span class="tag">Pre-Calculus</span></td></tr>
+    <tr><td>Jahnavi Revuru</td><td>USA</td><td><span class="tag">AP Statistics</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Graduate Students Table -->
+<div id="table-grad" style="overflow:hidden; transition:max-height 0.5s ease; max-height:0;">
+<table class="students-table">
+  <thead>
+    <tr>
+      <th>Student</th><th>Location</th><th>Focus Areas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Heba Abduljabar</td><td>UK</td><td><span class="tag">Number Theory</span><span class="tag">Cryptography</span></td></tr>
+    <tr><td>Rahul Varghese</td><td>India</td><td><span class="tag">Graph Theory</span><span class="tag">B.Tech Sem 4</span></td></tr>
+    <tr><td>S. D.</td><td>USA</td><td><span class="tag">SageMath</span></td></tr>
+    <tr><td>Sanaasha Ali</td><td>Canada</td><td><span class="tag">Combinatorics</span></td></tr>
+    <tr><td>Anna</td><td>USA</td><td><span class="tag">Combinatorics</span></td></tr>
+    <tr><td>Yilin Mou</td><td>USA</td><td><span class="tag">Number Theory</span></td></tr>
+    <tr><td>Geoff Yuen</td><td>Canada</td><td><span class="tag">Graph Theory</span><span class="tag">Group Theory</span><span class="tag">Number Theory</span></td></tr>
+    <tr><td>Sixiang Huang</td><td>USA</td><td><span class="tag">Graph Theory</span></td></tr>
+    <tr><td>Xiao Chen</td><td>USA</td><td><span class="tag">Number Theory</span></td></tr>
+    <tr><td>Ravisher Singh</td><td>USA</td><td><span class="tag">Combinatorics</span></td></tr>
+    <tr><td>Iteshaam Mahmood</td><td>USA</td><td><span class="tag">Probability Theory</span></td></tr>
+    <tr><td>Anas Alqarni</td><td>UAE</td><td><span class="tag">Discrete Maths</span></td></tr>
+    <tr><td>Kanan Jabar Karimli</td><td>Azerbaijan</td><td><span class="tag">Linear Algebra</span></td></tr>
+    <tr><td>Mona Albaqawi</td><td>Saudi Arabia</td><td><span class="tag">Graph Theory</span></td></tr>
+    <tr><td>Darren</td><td>India</td><td><span class="tag">Combinatorics</span><span class="tag">Probability Theory</span><span class="tag">B.Tech Sem 4</span></td></tr>
+    <tr><td>Lucius Y. Men</td><td>Canada</td><td><span class="tag">Combinatorial Analysis</span></td></tr>
+    <tr><td>Praveen Kumar</td><td>Singapore</td><td><span class="tag">Combinatorics</span></td></tr>
+    <tr><td>Ishaan Sharma</td><td>UK</td><td><span class="tag">Machine Learning</span><span class="tag">Combinatorics</span><span class="tag">Graph Theory</span></td></tr>
+    <tr><td>Vedant Wani</td><td>Netherlands</td><td><span class="tag">Linear Optimisation</span><span class="tag">Non-linear Optimisation</span></td></tr>
+    <tr><td>Sundaresh HR</td><td>India</td><td><span class="tag">Group Theory</span></td></tr>
+    <tr><td>Shawn Keogh</td><td>Ireland</td><td><span class="tag">Queuing Theory</span><span class="tag">Python</span><span class="tag">Metric Spaces</span></td></tr>
+  </tbody>
+</table>
+</div>
 </section>
 
 <!-- TESTIMONIAL -->
@@ -1215,6 +1238,28 @@
     e.preventDefault();
     document.getElementById('form-success').style.display = 'block';
     e.target.reset();
+  }
+
+  // Collapsible student tables
+  const tableState = { school: true, grad: false };
+
+  function toggleTable(id) {
+    tableState[id] = !tableState[id];
+    const table = document.getElementById('table-' + id);
+    const btn = document.getElementById('btn-' + id);
+    if (tableState[id]) {
+      table.style.maxHeight = '2000px';
+      btn.style.background = 'var(--ink)';
+      btn.style.color = 'var(--cream)';
+      btn.style.borderColor = 'var(--ink)';
+      btn.textContent = btn.textContent.replace('▸', '▾');
+    } else {
+      table.style.maxHeight = '0';
+      btn.style.background = 'transparent';
+      btn.style.color = 'var(--muted)';
+      btn.style.borderColor = 'var(--line)';
+      btn.textContent = btn.textContent.replace('▾', '▸');
+    }
   }
 </script>
 
