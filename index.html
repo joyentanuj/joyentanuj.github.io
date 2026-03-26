@@ -1549,20 +1549,21 @@
       <span class="contact-detail-value">Within 24 hours</span>
     </div>
   </div>
+
   <form class="contact-form" action="https://formspree.io/f/mzdjlnzl" method="POST">
     <div class="form-row">
       <div class="form-field">
         <label for="name">Your Name</label>
-        <input type="text" id="name" placeholder="Full name" required>
+        <input type="text" id="name" name="name" placeholder="Full name" required>
       </div>
       <div class="form-field">
         <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="you@example.com" required>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
       </div>
     </div>
     <div class="form-field">
       <label for="level">Level</label>
-      <select id="level">
+      <select id="level" name="level">
         <option value="">Select your level</option>
         <option>School Student</option>
         <option>Undergraduate</option>
@@ -1573,17 +1574,14 @@
     </div>
     <div class="form-field">
       <label for="subject">Subject / Exam</label>
-      <input type="text" id="subject" placeholder="e.g. AMC 12, Graph Theory, AP Calculus…">
+      <input type="text" id="subject" name="subject" placeholder="e.g. AMC 12, Graph Theory, AP Calculus…">
     </div>
     <div class="form-field">
       <label for="message">Message</label>
-      <textarea id="message" placeholder="Tell me about your goals, timeline, and any specific topics you'd like help with…"></textarea>
+      <textarea id="message" name="message" placeholder="Tell me about your goals, timeline, and any specific topics you'd like help with…"></textarea>
     </div>
     <button type="submit" class="btn-primary" style="align-self:flex-start;">Send Enquiry →</button>
-    <div id="form-success" style="display:none; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; color:var(--gold); margin-top:0.5rem;">
-      ✓ Message received — I'll be in touch within 24 hours.
-    </div>
-  </form>
+</form>
 </section>
 
   <!-- VISITOR COUNT -->
