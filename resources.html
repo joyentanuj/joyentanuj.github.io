@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Dr. Joyentanuj Das</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --rust: #8b3a2a;
+    --slate: #2a2d35;
+    --muted: #7a7567;
+    --line: rgba(201,168,76,0.25);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 10rem 4rem 5rem;
+    background: var(--slate);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: 'RESOURCES';
+    position: absolute;
+    font-size: 16vw;
+    font-weight: 300;
+    color: rgba(255,255,255,0.02);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.03em;
+  }
+
+  .page-header .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .page-header h1 em { font-style: italic; color: var(--gold); }
+
+  .page-header p {
+    font-size: 1.15rem;
+    color: rgba(245,240,232,0.6);
+    font-weight: 300;
+    max-width: 50ch;
+    line-height: 1.8;
+  }
+
+  /* SECTIONS */
+  .resources-section {
+    padding: 6rem 4rem;
+  }
+
+  .resources-section:nth-child(even) {
+    background: rgba(201,168,76,0.04);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--rust); }
+
+  /* BOOK GRID */
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .book-card {
+    border: 1px solid var(--line);
+    padding: 2rem;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .book-card:hover {
+    background: rgba(201,168,76,0.06);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .book-level {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .book-title {
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+
+  .book-author {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .book-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* LINKS GRID */
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .link-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.75rem;
+    border: 1px solid var(--line);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .link-card:hover {
+    background: rgba(201,168,76,0.06);
+    border-color: var(--gold);
+    transform: translateX(4px);
+  }
+
+  .link-icon {
+    font-size: 1.5rem;
+    min-width: 2rem;
+    text-align: center;
+  }
+
+  .link-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .link-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .link-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.5);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 2rem; }
+    .nav-links { display: none; }
+    .page-header { padding: 8rem 2rem 4rem; }
+    .resources-section { padding: 4rem 2rem; }
+    .book-grid { grid-template-columns: 1fr; }
+    .links-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Dr. Joyentanuj Das · Ph.D. Mathematics</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#expertise">Expertise</a></li>
+    <li><a href="index.html#subjects">Subjects</a></li>
+    <li><a href="index.html#students">Students</a></li>
+    <li><a href="index.html#reviews">Reviews</a></li>
+    <li><a href="resources.html" class="active">Resources</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="section-label">Library</div>
+  <h1>Recommended <em>Books</em><br>&amp; Useful Links</h1>
+  <p>A curated collection of textbooks, problem sets, and online resources I recommend to my students across all levels.</p>
+</div>
+
+<!-- COMPETITION BOOKS -->
+<section class="resources-section reveal" id="competition-books">
+  <div class="section-label">Competition Mathematics</div>
+  <h2 class="section-title">Books for <em>Olympiads</em></h2>
+  <div class="book-grid">
+
+    <div class="book-card">
+      <div class="book-level">AMC / AIME</div>
+      <div class="book-title">The Art of Problem Solving Vol. 1 & 2</div>
+      <div class="book-author">Richard Rusczyk</div>
+      <div class="book-desc">The gold standard for competition math preparation. Covers all foundational topics with challenging problems.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">AMC / AIME</div>
+      <div class="book-title">Introduction to Counting & Probability</div>
+      <div class="book-author">David Patrick</div>
+      <div class="book-desc">Essential combinatorics and probability for AMC and beyond. Clear explanations with well-graded problems.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Olympiad</div>
+      <div class="book-title">Problems from the Book</div>
+      <div class="book-author">Titu Andreescu & Gabriel Dospinescu</div>
+      <div class="book-desc">A treasure trove of beautiful olympiad problems with elegant solutions across all topics.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Olympiad</div>
+      <div class="book-title">How to Solve It</div>
+      <div class="book-author">George Pólya</div>
+      <div class="book-desc">A timeless guide to mathematical problem-solving strategy. Essential reading for every serious student.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Number Theory</div>
+      <div class="book-title">An Introduction to the Theory of Numbers</div>
+      <div class="book-author">Niven, Zuckerman & Montgomery</div>
+      <div class="book-desc">Comprehensive number theory text covering divisibility, congruences, and Diophantine equations.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Combinatorics</div>
+      <div class="book-title">A Walk Through Combinatorics</div>
+      <div class="book-author">Miklós Bóna</div>
+      <div class="book-desc">Accessible yet rigorous introduction to combinatorics, ideal for olympiad and undergraduate students.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- UNDERGRADUATE BOOKS -->
+<section class="resources-section reveal" id="undergrad-books">
+  <div class="section-label">Undergraduate Mathematics</div>
+  <h2 class="section-title">University <em>Textbooks</em></h2>
+  <div class="book-grid">
+
+    <div class="book-card">
+      <div class="book-level">Graph Theory</div>
+      <div class="book-title">Graph Theory</div>
+      <div class="book-author">Reinhard Diestel</div>
+      <div class="book-desc">The definitive graduate-level graph theory text. Rigorous, comprehensive, and freely available online.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Graph Theory</div>
+      <div class="book-title">Graph Theory with Applications</div>
+      <div class="book-author">Narsingh Deo</div>
+      <div class="book-desc">Ideal for engineering and CS students. Covers trees, paths, flows, and applications thoroughly.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Linear Algebra</div>
+      <div class="book-title">Linear Algebra Done Right</div>
+      <div class="book-author">Sheldon Axler</div>
+      <div class="book-desc">A beautifully written approach to linear algebra that emphasises understanding over computation.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Abstract Algebra</div>
+      <div class="book-title">Abstract Algebra</div>
+      <div class="book-author">Dummit & Foote</div>
+      <div class="book-desc">The comprehensive reference for groups, rings, fields, and modules. A must-have for any serious student.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Real Analysis</div>
+      <div class="book-title">Principles of Mathematical Analysis</div>
+      <div class="book-author">Walter Rudin</div>
+      <div class="book-desc">Known as "Baby Rudin" — the classic rigorous introduction to real analysis.</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-level">Probability</div>
+      <div class="book-title">Introduction to Probability</div>
+      <div class="book-author">Blitzstein & Hwang</div>
+      <div class="book-desc">Intuitive and rigorous probability theory. Excellent for both self-study and coursework.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- USEFUL LINKS -->
+<section class="resources-section reveal" id="links">
+  <div class="section-label">Online Resources</div>
+  <h2 class="section-title">Useful <em>Links</em></h2>
+  <div class="links-grid">
+
+    <a href="https://artofproblemsolving.com" target="_blank" class="link-card">
+      <div class="link-icon">🏆</div>
+      <div>
+        <div class="link-label">Competition Prep</div>
+        <div class="link-title">Art of Problem Solving (AoPS)</div>
+        <div class="link-desc">The best community and resource for competition mathematics. Forums, courses, and past problems.</div>
+      </div>
+    </a>
+
+    <a href="https://brilliant.org" target="_blank" class="link-card">
+      <div class="link-icon">💡</div>
+      <div>
+        <div class="link-label">Interactive Learning</div>
+        <div class="link-title">Brilliant.org</div>
+        <div class="link-desc">Engaging problem-based learning for maths, science, and CS. Great for building intuition.</div>
+      </div>
+    </a>
+
+    <a href="https://www.khanacademy.org" target="_blank" class="link-card">
+      <div class="link-icon">📚</div>
+      <div>
+        <div class="link-label">Foundation Building</div>
+        <div class="link-title">Khan Academy</div>
+        <div class="link-desc">Free, comprehensive video lessons from pre-algebra through multivariable calculus and statistics.</div>
+      </div>
+    </a>
+
+    <a href="https://www.wolframalpha.com" target="_blank" class="link-card">
+      <div class="link-icon">🔢</div>
+      <div>
+        <div class="link-label">Computation</div>
+        <div class="link-title">Wolfram Alpha</div>
+        <div class="link-desc">Powerful computational engine for checking answers, exploring mathematics, and visualising functions.</div>
+      </div>
+    </a>
+
+    <a href="https://www.desmos.com" target="_blank" class="link-card">
+      <div class="link-icon">📈</div>
+      <div>
+        <div class="link-label">Graphing Tool</div>
+        <div class="link-title">Desmos</div>
+        <div class="link-desc">Beautiful, free graphing calculator. Ideal for visualising functions, curves, and geometric concepts.</div>
+      </div>
+    </a>
+
+    <a href="https://mathworld.wolfram.com" target="_blank" class="link-card">
+      <div class="link-icon">🌐</div>
+      <div>
+        <div class="link-label">Reference</div>
+        <div class="link-title">MathWorld</div>
+        <div class="link-desc">Comprehensive mathematics encyclopaedia covering definitions, theorems, and formulas across all areas.</div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@3blue1brown" target="_blank" class="link-card">
+      <div class="link-icon">🎥</div>
+      <div>
+        <div class="link-label">Video Lectures</div>
+        <div class="link-title">3Blue1Brown</div>
+        <div class="link-desc">Stunning visual explanations of deep mathematical ideas. Essential viewing for any mathematics enthusiast.</div>
+      </div>
+    </a>
+
+    <a href="https://ocw.mit.edu/courses/mathematics/" target="_blank" class="link-card">
+      <div class="link-icon">🎓</div>
+      <div>
+        <div class="link-label">University Courses</div>
+        <div class="link-title">MIT OpenCourseWare</div>
+        <div class="link-desc">Free lecture notes, problem sets, and exams from MIT's mathematics courses at all levels.</div>
+      </div>
+    </a>
+
+    <a href="https://www.imo-official.org" target="_blank" class="link-card">
+      <div class="link-icon">🥇</div>
+      <div>
+        <div class="link-label">Olympiad</div>
+        <div class="link-title">IMO Official Website</div>
+        <div class="link-desc">Official International Mathematical Olympiad site with past problems, results, and country rankings.</div>
+      </div>
+    </a>
+
+    <a href="https://www.maa.org/math-competitions" target="_blank" class="link-card">
+      <div class="link-icon">📝</div>
+      <div>
+        <div class="link-label">AMC / AIME</div>
+        <div class="link-title">MAA Competitions</div>
+        <div class="link-desc">Official home of AMC 8, AMC 10, AMC 12, and AIME. Past papers, registration, and resources.</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="nav-logo" style="color:rgba(245,240,232,0.5); text-decoration:none;">Dr. Joyentanuj Das · Ph.D. Mathematics</a>
+  <div class="footer-copy">© 2026 · All rights reserved</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
