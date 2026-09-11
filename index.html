@@ -731,6 +731,21 @@
     #reviews .section-label ~ div { grid-template-columns: 1fr !important; }
   }
 
+  /* Styled scrollbar for student tables */
+  #table-school .scroll-inner::-webkit-scrollbar,
+  #table-grad .scroll-inner::-webkit-scrollbar {
+    width: 4px;
+  }
+  #table-school .scroll-inner::-webkit-scrollbar-track,
+  #table-grad .scroll-inner::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #table-school .scroll-inner::-webkit-scrollbar-thumb,
+  #table-grad .scroll-inner::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
   /* Styled scrollbar for reviews */
   #reviews .section-label ~ div > div:last-child {
     scrollbar-width: thin;
@@ -1108,6 +1123,7 @@
 
 <!-- School Students Table -->
 <div id="table-school" style="overflow:hidden; transition:max-height 0.5s ease; max-height:2000px;">
+<div class="scroll-inner" style="max-height:400px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--gold) transparent;">
 <table class="students-table" style="margin-bottom:3rem;">
   <thead>
     <tr>
@@ -1157,9 +1173,11 @@
   </tbody>
 </table>
 </div>
+</div>
 
 <!-- Graduate Students Table -->
 <div id="table-grad" style="overflow:hidden; transition:max-height 0.5s ease; max-height:0;">
+<div class="scroll-inner" style="max-height:400px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--gold) transparent;">
 <table class="students-table">
   <thead>
     <tr>
@@ -1192,6 +1210,7 @@
     <tr><td>Soham</td><td>USA</td><td><span class="tag">Linear Algebra</span></td></tr>
   </tbody>
 </table>
+</div>
 </div>
 </section>
 
